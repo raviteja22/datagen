@@ -1,0 +1,36 @@
+{
+   "table_name": "sample",
+   "rows": "50000000",
+   "delimiter": ",",
+   "columns": [
+   {
+      "name": "id",
+      "type": "int",
+      "data": {
+         "type": "dynamic", 
+         "generator": "sequence", 
+         "seed": "1"
+      }
+   },
+   {
+      "name": "title",
+      "type": "string",
+      "data": {
+         "type": "dynamic",
+         "generator": "random-text",
+         "length": "variable",
+         "length-limit": "32"
+      }
+   },
+   {
+      "name": "body",
+      "type": "string",
+      "data": {
+         "type": "dynamic",
+         "generator": "random-text",
+         "length": "variable",
+         "length-limit": "512"
+      }
+   }
+   ]
+}
