@@ -124,6 +124,7 @@ void TableDef::delimiterIs(const string&& d) {
    delimiter_ = d;
 }
 
+
 string TableDef::getHeader() {
    string res;
    for(auto const& c: columns_) {
@@ -167,9 +168,6 @@ int main(int argc, char** argv) {
       
       if(countRows > 0) {
          unique_ptr<TableDef> tp(new TableDef());
-
-         tp->delimiterIs(static_cast<string>(pt.get_child("delimiter").data()));
-
          for(auto const& c: pt.get_child("columns")) {
             ColumnDef* col = new ColumnDef(static_cast<string>(c.second.get_child("name").data()),
                                      static_cast<string>(c.second.get_child("type").data()));
@@ -185,7 +183,13 @@ int main(int argc, char** argv) {
             }
             tp->addColumn(col);
          }
-         cout << tp->getHeader() << endl;
+
+         // Output generation
+         tp->delimiterIs(static_cast<string>(pt.get_child("delimiter").data()));
+         bool enableHeader = (static_cast<string>(pt.get_child("header").data())).compare("true") ? false : true;
+         if(enableHeader) {
+            cout << tp->getHeader() << endl;
+         }
          for(int i = 0; i < countRows; i++) {
             cout << tp->getNextRow() << endl;
          }

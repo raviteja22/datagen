@@ -1,7 +1,8 @@
 {
    "table_name": "sample",
-   "rows": "50000000",
+   "rows": "10",
    "delimiter": ",",
+   "header": "true",
    "columns": [
    {
       "name": "id",
